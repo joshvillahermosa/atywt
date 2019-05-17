@@ -6,7 +6,7 @@ Generates Test files from `/src`. Currently supports React, Jest, and React Test
 
 **Repository Consistency is key for this to work**
 
-### TODOs
+### Road Map
 
 - [x] Create functionality to read file and return properties
 - [x] Create functionality to recursively read directories and return files to be tested
