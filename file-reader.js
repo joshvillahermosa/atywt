@@ -6,6 +6,7 @@ const lineByLine = require("n-readlines");
 // FIXME: Currently does not support global
 const exportList = /export const ([a-zA-Z]+) */;
 const exportDefault = /export default class ([a-zA-Z]+) */;
+const exportClass = /export class ([a-zA-Z]+) */;
 
 // React Specific
 const onClick = /onClick={/;
@@ -29,6 +30,7 @@ const loadFileReaderDependencies = ({ lineReader }) => {
     let fileProperties = {
       exportDefault: undefined,
       exportList: [],
+      exportClass: [],
       events: {
         onChange: false,
         onClick: false
@@ -52,6 +54,11 @@ const loadFileReaderDependencies = ({ lineReader }) => {
         regex: exportDefault
       });
 
+      const exportClassProp = findProp({
+        line,
+        regex: exportClass
+      });
+
       const onChangeProp = findProp({
         line,
         regex: onChange
@@ -64,6 +71,7 @@ const loadFileReaderDependencies = ({ lineReader }) => {
 
       if (exportDefaultProp) fileProperties.exportDefault = exportDefaultProp;
       if (exportSingleProp) fileProperties.exportList.push(exportSingleProp);
+      if (exportClassProp) fileProperties.exportClass.push(exportClassProp);
       if (onClickProp) fileProperties.events.onClick = true;
       if (onChangeProp) fileProperties.events.onChange = true;
     }
