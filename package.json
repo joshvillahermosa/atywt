@@ -1,0 +1,20 @@
+{
+  "name": "test-generator",
+  "version": "1.0.0",
+  "description": "Test Generator by reading your src files",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "test",
+    "generation",
+    "react"
+  ],
+  "author": "Joshua John Villahermosa <joshvillahermosa@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "mri": "^1.1.4",
+    "n-readlines": "^1.0.0"
+  }
+}
