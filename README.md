@@ -1,8 +1,13 @@
 ## ATYWT
 
+**BIG WIP**
+
 _About Time You Wrote Tests_
 
-Generates Test files from `/src`. Currently supports React, Jest, and React Testing Library.
+Generates Test files from `/src`. Currently supports React, Jest, and React Testing Library. This is really a one off scaffolder since you should have wrote tests at the beginning of the projectm but you are here now and everything is okay.
+
+### Install as a package dependancy?
+Unless you plan on nuking your tests, I doubt it. Just install it globally
 
 **Repository Consistency is key for this to work**
 
