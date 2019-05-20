@@ -17,7 +17,6 @@
   "dependencies": {
     "leasot": "^7.3.4",
     "mri": "^1.1.4",
-    "mustache": "^3.0.1",
     "n-readlines": "^1.0.0"
   }
 }
