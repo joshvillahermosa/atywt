@@ -18,16 +18,20 @@ const createTemplateProperties = ({ fileProperties }) => {
       return acc;
     }, "");
 
-  // TODO: Handle non barreled cases
-  if (exportList.length >= 1)
+  // TODO: Handle non barreled cases. This current takes the last item of the array
+  if (exportList.length >= 1) {
+    templateProperties.exportList = fileProperties.exportList.reverse();
     templateProperties.exportListImport = `import { ${fileProperties.exportList.join(
       ", "
     )} } from './'`;
+  }
 
-  if (exportClass.length >= 1)
-    templateProperties.exportClassImport = `import { ${fileProperties.exportList.join(
+  if (exportClass.length >= 1) {
+    templateProperties.exportClass = fileProperties.exportClass.reverse();
+    templateProperties.exportClassImport = `import { ${fileProperties.exportClass.join(
       ", "
     )} } from './'`;
+  }
 
   if (exportDefault)
     templateProperties.exportDefaultImport = `import ${exportDefault} from './'`;
