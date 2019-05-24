@@ -17,7 +17,7 @@ describe("<${exportList[0] || exportClass[0]} />", () => {
   afterEach(cleanup);
 
   describe('<${exportList[0] || exportClass[0]} /> rendering', () => {
-    it("should return HTML Snapshot", () => {
+    it("should match HTML Snapshot", () => {
       const { container } = render(<${exportList[0] || exportClass[0]} />);
       expect(container.cloneNode(true)).toMatchSnapshot();
     });

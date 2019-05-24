@@ -5,14 +5,14 @@ import { observer } from "mobx-react";
 import { SubComponentA } from "./SubComponentA";
 import { SubComponentB } from "./SubComponentB";
 
-interface SliderClassProps {
+interface ComponentCProps {
   range: string;
   steps: number;
   updateRange: (value: string) => void;
 }
 
 @observer
-export class SliderClass extends Component<SliderClassProps> {
+export class ComponentC extends Component<ComponentCProps> {
   @observable range: string = this.props.range;
 
   @action

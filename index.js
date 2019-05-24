@@ -11,7 +11,7 @@ const config = { debug };
 
 if (!directoryName)
   return console.error("No file name passed in, will not run");
-const files = getFilesToBeTested({ directoryName });
+const files = getFilesToBeTested({ directoryName, debug });
 console.log("Writing tes files for: ", files);
 
 files.forEach(file => {

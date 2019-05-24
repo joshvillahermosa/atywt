@@ -2,14 +2,15 @@ const fs = require("fs");
 const lineByLine = require("n-readlines");
 
 const { findProp } = require("./file-reader");
-const fileNameFromIndex = /(import|export) ([a-zA-Z]+|\*) from '\.\/([a-zA-Z]+)'/;
+const fileNameFromIndex = /(import|export) ([a-zA-Z]+|\*) from ['|"]\.\/([a-zA-Z]+)['|"]/;
 
 // Const move to File-Reader?
 const getFilesToBeTested = ({
   directoryName,
-  extension,
-  isBarreled,
-  ignoreSnapshotsDir = true
+  extension, // NOT SUPPORTED YET
+  isBarreled, // NOT SUPPORTED YET
+  ignoreSnapshotsDir = true,
+  debug = false
 }) => {
   // Try converting to const
   let filesToBeTested = [];
@@ -22,7 +23,8 @@ const getFilesToBeTested = ({
     return item.split(".");
   });
 
-  // TODO: Abstract out of
+  // TODO: Abstract out of reference
+  // Contains Sub Directory
   const directoryContainsSubDirectory = parsedFiles.reduce((acc, item) => {
     if (ignoreSnapshotsDir && item[0] === "__snapshots__") return acc;
 
@@ -30,12 +32,14 @@ const getFilesToBeTested = ({
     else return acc;
   }, false);
 
+  // Contains directory index
   const directoryContainsIndex = parsedFiles.reduce((acc, item) => {
     if (item.length === 2 && `${item[0]}.${item[1]}` === "index.ts")
       return true;
     else return acc;
   }, false);
 
+  // Contains sub directory
   if (directoryContainsSubDirectory) {
     parsedFiles.forEach(folder => {
       if (ignoreSnapshotsDir && folder === "__snapshots__") return;
@@ -48,6 +52,7 @@ const getFilesToBeTested = ({
     });
   }
 
+  // Contains directory index
   if (directoryContainsIndex) {
     // TODO: Refactor to own method chared with file reader
     const liner = new lineByLine(`${directoryName}index.ts`);
@@ -58,13 +63,14 @@ const getFilesToBeTested = ({
     }
   }
 
-  // console.log(
-  //   parsedFiles,
-  //   `Contains Subdirectory? ${directoryContainsSubDirectory}`,
-  //   `Contains index.ts? ${directoryContainsIndex}`,
-  //   "Main Files: ",
-  //   filesToBeTested
-  // );
+  if (debug)
+    console.log(
+      parsedFiles,
+      `Contains Subdirectory? ${directoryContainsSubDirectory}`,
+      `Contains index.ts? ${directoryContainsIndex}`,
+      "Main Files: ",
+      filesToBeTested
+    );
 
   return filesToBeTested;
 };
