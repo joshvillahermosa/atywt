@@ -35,7 +35,7 @@ The scaffolder will look inside the index.ts and will scan the file it exports f
 - [ ] Create ability to write props into tests
 - [ ] Write Tests because this is a testing scaffolding tool
 - [ ] Create a config reader
-- [ ] Implement a debug flag
+- [x] Implement a debug flag
 - [ ] Write support code for non baralled repos
 - [ ] Write code for non tsx support
 - [ ] Write code for Vue Support
